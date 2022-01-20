@@ -3,27 +3,38 @@ function photographerFactory(data) {
     
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
-        const $wrapper = document.createElement("div");
-    $wrapper.classList.add("photographer_card");
-    $wrapper.classList.add(id);
-            
-    const photograph = `
-    <a href="./photographer.html?id=${id}">
-      <div class="photographer_img">
-        <img src="${picture}" alt="">
-        <h2>${name}</h2>
-      </div>
-    </a>
-    <div class="photographer_info">
-      <p class="city">${city + ", " + country}</p>
-      <p class="tagline">${tagline}</p>
-      <p class="price">${price + "&euro;" + "/jour"}</p>
-    </div>
-    `;
-    $wrapper.innerHTML = photograph;
-
-    return $wrapper;
+    function openProfil() {
+      window.open(`photographer.html?id=${id}`);
     }
-    return { name, picture, id, city, country, tagline, price, getUserCardDOM }
-}
+  
+    function getUserCardDOM() {
+      const article = document.createElement("article");
+      const img = document.createElement("img");
+      const h2 = document.createElement("h2");
+      const location = document.createElement("div");
+      const taglines = document.createElement("div");
+      const prices = document.createElement("div");
+  
+      img.setAttribute("src", picture);
+      h2.textContent = name;
+  
+      location.className = "location";
+      location.textContent = city + ", " + country;
+  
+      taglines.className = "taglines";
+      taglines.textContent = tagline;
+  
+      prices.className = "prices";
+      prices.textContent = price + " €";
+  
+      article.appendChild(img);
+      article.appendChild(h2);
+      article.appendChild(location);
+      article.appendChild(taglines);
+      article.appendChild(prices);
+      article.addEventListener("click", openProfil);
+  
+      return article;
+    }
+    return { name, picture, location, tagline, price, getUserCardDOM };
+  }
