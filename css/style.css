@@ -46,6 +46,7 @@ h1 {
   .photographer_section article h2 {
     color: #d3573c;
     font-size: 36px;
+    line-height: 47px;
   }
   
   .photographer_section article img {
@@ -60,14 +61,17 @@ h1 {
   .photographer_section article .location {
     color: #901c1c;
     font-size: 13px;
+    line-height: 17px;
   }
   
   .photographer_section article .taglines {
     color: black;
     font-size: 10px;
+    line-height: 13px;
   }
   
   .photographer_section article .prices {
     color: #757575;
     font-size: 9px;
+    line-height: 12px;
   }
