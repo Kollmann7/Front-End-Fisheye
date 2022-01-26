@@ -1,12 +1,12 @@
     async function getPhotographers() {
-        // Penser à remplacer par les données récupérées dans le json
-        let photographers = []  
-        await fetch("../../data/photographers.json")
-        .then(res => res.json())
-        .then((data) => (photographers = data.photographers))
-        .catch(err => console.log('an error occurred', err))
-        // et bien retourner le tableau photographers seulement une fois
-        return  {photographers};
+        try {
+            let response = await fetch('../../data/photographers.json')
+            let result = await response.json()
+            return result
+        } catch (error) {
+            console.error('mon fetch a pété', e)
+
+        }
     }
 
     async function displayData(photographers) {
