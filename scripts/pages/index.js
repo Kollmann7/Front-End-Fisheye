@@ -2,10 +2,10 @@
         try {
             let response = await fetch('../../data/photographers.json')
             let result = await response.json()
-            return result
+            console.log(result['photographers'])
+            return result['photographers']
         } catch (error) {
             console.error('mon fetch a pété', e)
-
         }
     }
 
@@ -21,7 +21,7 @@
 
     async function init() {
         // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
+        const photographers = await getPhotographers();
         displayData(photographers);
     };
     
