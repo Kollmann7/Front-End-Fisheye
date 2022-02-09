@@ -17,18 +17,24 @@ function mediaFactory(media){
     const heart = document.createElement("img");
     const likeContainer = document.createElement("div");
     const ImgTitle = document.createElement("div");
+    if (media.image){
+        article.appendChild(imageElement);
+        console.log(image)
+        article.appendChild(ImgTitle);
+        imageElement.setAttribute("src", photo);
+        imageElement.setAttribute("class", "gallery");
 
-    article.appendChild(imageElement);
-    console.log(image)
-    article.appendChild(ImgTitle);
-    imageElement.setAttribute("src", photo);
-    imageElement.setAttribute("class", "gallery");
-
-    // article.appendChild(videoElement);
-    // article.appendChild(ImgTitle);
-    // videoElement.setAttribute("src", clip);
-    // videoElement.setAttribute("class", "gallery");
-    // videoElement.setAttribute("type", "video/mp4");
+    }    
+    else if (media.video){
+       article.appendChild(videoElement);
+        article.appendChild(ImgTitle);
+        videoElement.setAttribute("src", clip);
+        videoElement.setAttribute("class", "gallery");
+        videoElement.setAttribute("type", "video/mp4"); 
+    }
+    else{
+        console.log(error)
+    }
     
     titles.className = "title";
     titles.textContent = title;
