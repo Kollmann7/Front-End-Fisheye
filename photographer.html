@@ -5,39 +5,67 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0a06104276.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo"/>
+      <a href="./index.html" tabindex="1">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+      </a>
     </header>
     <main id="main">
       <div class="photograph_header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()">Contactez-moi </button>
       </div>
-      
+      <div id="dropdown" class="select_dropdown" role="listbox">
+        <div class="select_medias">
+          <label for="select_images" id="sort" tabindex="0">trier par</label>
+          <select id="select_images" data-trigger="select" tabindex="0">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+      <section class="photographers_media">
+      </section>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 class="modal_title">Contactez-moi</h2>
+          <img src="assets/icons/closeW.svg" onclick="closeModal()" />
         </header>
-        <section class="photographers_pictures">
-          
-        </section>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input/>
+						<label id="firstname" for="firstNameInput">Prénom</label>
+						<input id="firstNameInput" name="firstname" type="text" required/>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label id="name" for="nameInput">Nom</label>
+            <input id="lastNameInput" name="lastname" type="text" required/>
+          </div>
+          <div>
+            <label id="email" for="emailInput">Email</label>
+            <input id="emailInput" name="email" type="email" required/>
+          </div>
+          <div>
+            <label id="message" for="messageInput">Votre message</label>
+            <textarea id="messageInput" name="message" text="Message" required rows="10" ></textarea>
+          </div>
+          <button id="btn_contact_submit" type="submit" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    
+    <script src="scripts/utils/lightbox.js"></script>
     <script src="scripts/factories/media.js" ></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="scripts/factories/photographerProfils.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/factories/totallike.js"></script>
   </body>
 </html>
