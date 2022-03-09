@@ -1,6 +1,7 @@
 function profilFactory(profil) {
   const { name, portrait, city, country, tagline } = profil;
   const picture = `assets/photographers/${portrait}`;
+  displayPhotographerName(name);
 
   function getProfilCardDOM() {
     const article = document.createElement("article");
