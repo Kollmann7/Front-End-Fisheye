@@ -1,11 +1,10 @@
 // gallery factory
 
 function mediaFactory(media){
-    const {image, video, title, likes, heart, id} = media;
+    const {image, video, title, likes, id} = media;
     const photo = `assets/media/${image}`;
     const clip = `assets/media/${video}`;
     const heartIcon = `assets/icons/heart.svg`;
-    console.log(media)
 
     function getMediaCardDOM(){
     const article = document.createElement("article");
@@ -19,17 +18,15 @@ function mediaFactory(media){
     const ImgTitle = document.createElement("div");
     if (media.image){
         article.appendChild(imageElement);
-        console.log(image)
         article.appendChild(ImgTitle);
-        imageElement.setAttribute("src", photo);
         imageElement.setAttribute("class", "gallery");
-
+        imageElement.setAttribute("src", photo);
     }    
     else if (media.video){
-       article.appendChild(videoElement);
+        article.appendChild(videoElement);
         article.appendChild(ImgTitle);
-        videoElement.setAttribute("src", clip);
         videoElement.setAttribute("class", "gallery");
+        videoElement.setAttribute("src", clip);
         videoElement.setAttribute("type", "video/mp4"); 
     }
     else{
@@ -43,7 +40,7 @@ function mediaFactory(media){
     like.textContent = likes;
 
     heart.className = "heart_icon";
-    heart.setAttribute("src",heartIcon)
+    heart.setAttribute("src",heartIcon);
 
     likeContainer.className = "like_container";
     likeContainer.appendChild(like);
