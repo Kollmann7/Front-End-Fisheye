@@ -1,11 +1,10 @@
     async function getPhotographers() {
         try {
-            let response = await fetch('../../data/photographers.json')
-            let result = await response.json()
-            console.log(result['photographers'])
-            return result['photographers']
+            let response = await fetch('../../data/photographers.json');
+            let result = await response.json();
+            return result['photographers'];
         } catch (error) {
-            console.error('mon fetch a pété', e)
+            console.error('mon fetch a pété', e);
         }
     }
 
