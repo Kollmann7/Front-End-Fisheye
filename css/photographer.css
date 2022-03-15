@@ -151,7 +151,7 @@
 }
 .heart_icon {
     stroke:none;
-    fill: #901c1c;
+    color: #901c1c ;
     width: 30px;
     height: 50px;
 }
@@ -274,27 +274,30 @@ textarea {
     cursor: pointer;
     
 }
-.lightbox_container img{
-    width: auto;
-    height: auto;
-    max-width: 72vw;
+.lightbox_container img,
+.lightbox_container video{
+    min-width: 50vw;
+    min-height: 60vh;
+    max-width: 70vw;
     max-height: 80vh;
-    object-fit: unset;
+	object-fit: contain;
     
 }
 
 .lightbox_container{
     display: flex;
+    flex-direction: column;
     align-items:center;
     justify-content: center;
-    margin-left: 50px;
-    margin-right: 50px;
-    min-height:100vh;
+    margin :50px;
+    min-height:0vh;
 
 }
 
-.lightbox_media_title {
+.lightbox_title {
 	color:  #901c1c;
+    display: flex;
+    
 }
 
 .lightbox_media > img,
