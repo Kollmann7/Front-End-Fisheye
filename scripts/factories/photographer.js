@@ -16,6 +16,7 @@ function photographerFactory(data) {
       const prices = document.createElement("div");
   
       img.setAttribute("src", picture);
+      img.setAttribute('alt', `Photo portrait de ${name}`);
       h2.textContent = name;
   
       location.className = "location";
@@ -25,7 +26,7 @@ function photographerFactory(data) {
       taglines.textContent = tagline;
   
       prices.className = "prices";
-      prices.textContent = price + " €";
+      prices.textContent = price + " €/jour";
   
       article.appendChild(img);
       article.appendChild(h2);
@@ -36,5 +37,6 @@ function photographerFactory(data) {
   
       return article;
     }
+  
     return { name, picture, location, tagline, price, getUserCardDOM };
   }
