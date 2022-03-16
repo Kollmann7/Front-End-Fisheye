@@ -1,12 +1,18 @@
 // gallery factory
 
-function mediaFactory(media){
-    const {image, video, title, likes, id} = media;
-    const photo = `assets/media/${image}`;
-    const clip = `assets/media/${video}`;
-    const heartIcon = `assets/icons/heart.svg`;
-
-    function getMediaCardDOM(){
+class MediaFactory{
+    constructor(media){
+        this.image = media.image;
+        this.video = media.video;
+        this.title = media.title;
+        this.like = media.likes;
+        this.id = media.id;
+        this.photo = `assets/media/${this.image}`;
+        this.clip = `assets/media/${this.video}`;
+        this.heartIcon = `assets/icons/heart.svg`;
+    }
+   
+    getMediaCardDOM(){
     const article = document.createElement("article");
     article.setAttribute("id", id);
     const imageElement = document.createElement("img");
@@ -16,17 +22,17 @@ function mediaFactory(media){
     const heart = document.createElement("img");
     const likeContainer = document.createElement("div");
     const ImgTitle = document.createElement("div");
-    if (media.image){
+    if (this.image){
         article.appendChild(imageElement);
         article.appendChild(ImgTitle);
         imageElement.setAttribute("class", "gallery");
-        imageElement.setAttribute("src", photo);
+        imageElement.setAttribute("src", this.photo);
     }    
-    else if (media.video){
+    else if (this.video){
         article.appendChild(videoElement);
         article.appendChild(ImgTitle);
         videoElement.setAttribute("class", "gallery");
-        videoElement.setAttribute("src", clip);
+        videoElement.setAttribute("src", this.clip);
         videoElement.setAttribute("type", "video/mp4"); 
     }
     else{
@@ -34,13 +40,13 @@ function mediaFactory(media){
     }
     
     titles.className = "title";
-    titles.textContent = title;
+    titles.textContent = this.title;
 
     like.className = "likes";
-    like.textContent = likes;
+    like.textContent = this.likes;
 
     heart.className = "heart_icon";
-    heart.setAttribute("src",heartIcon);
+    heart.setAttribute("src",this.heartIcon);
 
     likeContainer.className = "like_container";
     likeContainer.appendChild(like);
@@ -52,5 +58,4 @@ function mediaFactory(media){
 
     return article;
 }
-    return {image, video, title, likes,  id, getMediaCardDOM }
 }

@@ -17,109 +17,17 @@ async function getProfilMedia() {
   }
 }
 
-function displayProfilMedia( profils, medias ) {
-  
-  const profil = profils.find(profil => profil.id === parseInt(id));
+function displayProfil (profil) {
+  const profilModel = new ProfilFactory(profil);
+  profilModel.buildProfilCardDOM(profilSection, mediaSection);
+}
+async function init() {
+  const {media: medias, photographers} = await getProfilMedia();
+  // displayProfilMedia(photographers, media);
+  const profil = photographers.find(profil => profil.id === parseInt(id));
   const mediasFromPhotographer = medias.filter(media => media.photographerId === parseInt(id));
   profil.medias = mediasFromPhotographer;
-  const lightbox = new Lightbox(mediasFromPhotographer);
-  document.body.appendChild(lightbox.buildDOM());
 
-  likesArray = [...mediasFromPhotographer].sort(function(a, b){
-    return b.likes - a.likes});
-  dateArray = [...mediasFromPhotographer].sort(function(a, b){
-    b = new Date(b.date).getTime(); 
-    a = new Date(a.date).getTime();
-    return a - b;});
-  titleArray = [...mediasFromPhotographer].sort(function(a, b){
-    b = (b.title);
-    a = (a.title);
-    return a.localeCompare(b) ;});
-
-  const dropdown = document.getElementById("select_images");
-  let sortValue = dropdown.value;
-  displayMedias(likesArray);
-
-  dropdown.addEventListener('change', (event) => {
-    
-    sortValue = event.target.value;
-    if (sortValue === "popularity"){
-    displayMedias(likesArray);
-  } else if (sortValue === "date"){
-    displayMedias(dateArray);
-  } else {
-    displayMedias(titleArray);
-  }
-  });
-  likeMedia(medias);
   displayProfil(profil);
-  openLightbox(lightbox);
-}
-
-function openLightbox(lightbox){
-  const openImage = document.querySelectorAll(".gallery");
-  console.log(openImage);
-  openImage.forEach((image) => {
-    image.addEventListener("click", (event) => {
-    const articleId = event.target.parentNode.id;
-    lightbox.open(parseInt(articleId));
-  })
-  })
-}
-
-function displayMedias(mediasFromPhotographer){
-  // mediaSection.innerHTML ="";
-  while (mediaSection.firstChild){
-    mediaSection.removeChild(mediaSection.firstChild);
-  }
-
-  mediasFromPhotographer.forEach((media) => {
-    const mediaModel = mediaFactory(media);
-    const mediaDOM = mediaModel.getMediaCardDOM();
-    mediaSection.appendChild(mediaDOM);
-  });
-}
-
-function displayProfil (profil) {
-  const profilModel = profilFactory(profil);
-  const profilDOM = profilModel.getProfilCardDOM();
-  profilSection.appendChild(profilDOM);
-}
-
-function displaySortMedias() {
-  const SortButtonSection = document.querySelector(".select_dropdown");
-  const buttonSort = sortMediasDOM();
-  SortButtonSection.appendChild(buttonSort);
-}
-
-
-function likeMedia(medias){
-  const addLike = document.querySelectorAll(".heart_icon");
-  addLike.forEach((like) => {
-    const likescounter = like.previousSibling;
-    like.addEventListener('click', (event) => {
-      const mediaId = event.target.parentNode.parentNode.parentNode.id;
-      const oldLike = medias.filter(media => media.id === parseInt(mediaId))[0].likes;
-      if (likescounter.textContent == oldLike) {
-        likescounter.textContent = parseInt(likescounter.textContent) +1;
-      }
-      changeTotalLike();
-    }) 
-  })
-    
-}
-
-function changeTotalLike(){
-  const addLike = document.querySelectorAll(".heart_icon");
-  let totalLikes = 0;
-  addLike.forEach((like) => {
-    const likescounter = like.previousSibling;
-    totalLikes = totalLikes + parseInt(likescounter.textContent);
-  })
-}
-
-async function init() {
-  const {media, photographers} = await getProfilMedia();
-  displayProfilMedia(photographers, media);
 }
 init();

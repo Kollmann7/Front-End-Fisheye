@@ -3,7 +3,6 @@ class Lightbox{
     constructor (mediasFromPhotographer){
         this.medias = mediasFromPhotographer;
         this.bindKeyUp = this.keyUp.bind(this);
-        console.log(this.medias)
     }
 
      
