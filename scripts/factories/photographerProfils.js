@@ -1,144 +1,160 @@
+/* global ContactForm, Lightbox, MediaFactory */
+
+// eslint-disable-next-line no-unused-vars
 class ProfilFactory {
-  constructor(profil){
+  constructor(profil) {
     this.name = profil.name;
     this.portrait = profil.portrait;
     this.city = profil.city;
     this.country = profil.country;
     this.tagline = profil.tagline;
+    this.price = profil.price;
     this.picture = `assets/photographers/${this.portrait}`;
-    this.medias = profil.medias.map(media => new MediaFactory(media));
+    this.heartIcon = 'assets/icons/heart.svg';
+    this.medias = profil.medias.map((media) => new MediaFactory(media));
     this.lightbox = new Lightbox(this.medias);
-
+    this.contactForm = new ContactForm(this.name);
+    this.likesArray = [];
+    this.dateArray = [];
+    this.titleArray = [];
   }
-    
+
   buildProfilCardDOM(profilSection, mediaSection) {
     this.lightboxDOM();
     this.profilArticle = this.profilDOM();
     profilSection.appendChild(this.profilArticle);
     this.mediaSection = mediaSection;
-    this.displayMedias(this.medias);
+    this.sortMedia(this.medias);
+    this.likeMedia(this.medias);
+    this.totalLikesAndPriceDOM();
+    this.changeTotalLike();
   }
 
-  profilDOM(){
-    const article = document.createElement("article");
-    const h2 = document.createElement("h2");
-    const img = document.createElement("img");
-    const location = document.createElement("div");
-    const taglines = document.createElement("div");
-    const intro = document.createElement("div");
-    const contactBtn = document.querySelector(".contact_button");
+  profilDOM() {
+    const article = document.createElement('article');
+    const h2 = document.createElement('h2');
+    const img = document.createElement('img');
+    const location = document.createElement('div');
+    const taglines = document.createElement('div');
+    const intro = document.createElement('div');
+    const contactBtn = document.querySelector('.contact_button');
     h2.textContent = this.name;
-    img.setAttribute("src", this.picture);
-    
-    location.className = "location";
-    location.textContent = this.city + ", " + this.country;
-    
-    taglines.className = "taglines";
+    img.setAttribute('src', this.picture);
+
+    location.className = 'location';
+    location.textContent = `${this.city}, ${this.country}`;
+
+    taglines.className = 'taglines';
     taglines.textContent = this.tagline;
-    
-    intro.className = "desc";
+
+    intro.className = 'desc';
     intro.appendChild(h2);
     intro.appendChild(location);
     intro.appendChild(taglines);
-    
+
     article.appendChild(intro);
     article.appendChild(contactBtn);
     article.appendChild(img);
-    
+
     return article;
   }
 
-  lightboxDOM(){
+  lightboxDOM() {
     document.body.appendChild(this.lightbox.buildDOM());
-
   }
-  displayProfilMedia() {
-    
-    // profil.medias = mediasFromPhotographer;
-    
-    likesArray = [...mediasFromPhotographer].sort(function(a, b){
-      return b.likes - a.likes});
-      dateArray = [...mediasFromPhotographer].sort(function(a, b){
-        b = new Date(b.date).getTime(); 
-        a = new Date(a.date).getTime();
-        return a - b;});
-        titleArray = [...mediasFromPhotographer].sort(function(a, b){
-          b = (b.title);
-          a = (a.title);
-          return a.localeCompare(b) ;});
-          
-          const dropdown = document.getElementById("select_images");
-          let sortValue = dropdown.value;
-          this.displayMedias(likesArray);
-          
-          dropdown.addEventListener('change', (event) => {
-            
-            sortValue = event.target.value;
-            if (sortValue === "popularity"){
-              this.displayMedias(likesArray);
-            } else if (sortValue === "date"){
-              this.displayMedias(dateArray);
-            } else {
-              this.displayMedias(titleArray);
-            }
-          });
-          this.likeMedia(medias);
-          this.displayProfil(profil);
-          this.openLightbox(lightbox);
-        }
-        
-  displayMedias(mediasFromPhotographer){
+
+  sortMedia(mediasFromPhotographer) {
+    this.likesArray = [...mediasFromPhotographer].sort((a, b) => b.likes - a.likes);
+    this.dateArray = [...mediasFromPhotographer].sort((a, b) => {
+      new Date(b.date).getTime();
+      new Date(a.date).getTime();
+      return a - b;
+    });
+    this.titleArray = [...mediasFromPhotographer].sort((a, b) => (a.title).localeCompare(b.title));
+
+    const dropdown = document.getElementById('select_images');
+    let sortValue = dropdown.value;
+    this.displayMedias(this.likesArray);
+
+    dropdown.addEventListener('change', (event) => {
+      sortValue = event.target.value;
+      if (sortValue === 'popularity') {
+        this.displayMedias(this.likesArray);
+      } else if (sortValue === 'date') {
+        this.displayMedias(this.dateArray);
+      } else {
+        this.displayMedias(this.titleArray);
+      }
+    });
+  }
+
+  displayMedias(mediasFromPhotographer) {
     // mediaSection.innerHTML ="";
-    while (this.mediaSection.firstChild){
+    while (this.mediaSection.firstChild) {
       this.mediaSection.removeChild(this.mediaSection.firstChild);
     }
-    
+
     mediasFromPhotographer.forEach((media) => {
       const mediaDOM = media.getMediaCardDOM();
       this.mediaSection.appendChild(mediaDOM);
     });
+    this.openLightbox();
   }
-             
-  displaySortMedias() {
-    const SortButtonSection = document.querySelector(".select_dropdown");
-    const buttonSort = sortMediasDOM();
-    SortButtonSection.appendChild(buttonSort);
-  }
-  
-  // displayPhotographerName(name);
-  
-  likeMedia(medias){
-    const addLike = document.querySelectorAll(".heart_icon");
+
+  likeMedia(medias) {
+    const addLike = document.querySelectorAll('.heart_icon');
     addLike.forEach((like) => {
       const likescounter = like.previousSibling;
       like.addEventListener('click', (event) => {
         const mediaId = event.target.parentNode.parentNode.parentNode.id;
-        const oldLike = medias.filter(media => media.id === parseInt(mediaId))[0].likes;
-        if (likescounter.textContent == oldLike) {
-          likescounter.textContent = parseInt(likescounter.textContent) +1;
+        const oldLike = medias.filter((media) => media.id === parseInt(mediaId, 10))[0].likes;
+        if (parseInt(likescounter.textContent, 10) === oldLike) {
+          likescounter.textContent = parseInt(likescounter.textContent, 10) + 1;
+        } else if (likescounter.textContent > oldLike) {
+          likescounter.textContent = parseInt(likescounter.textContent, 10) - 1;
         }
         this.changeTotalLike();
-      }) 
-    })
+      });
+    });
   }
-  
-  changeTotalLike(){
-    const addLike = document.querySelectorAll(".heart_icon");
-    let totalLikes = 0;
+
+  changeTotalLike() {
+    this.totalLikes = 0;
+    const addLike = document.querySelectorAll('.heart_icon');
     addLike.forEach((like) => {
       const likescounter = like.previousSibling;
-      totalLikes = totalLikes + parseInt(likescounter.textContent);
-    })
+      this.totalLikes += parseInt(likescounter.textContent, 10);
+    });
+    this.totalLikesAndPriceDOM();
   }
-  
-  openLightbox(lightbox){
-    const openImage = document.querySelectorAll(".gallery");
-    console.log(openImage);
+
+  openLightbox() {
+    const openImage = document.querySelectorAll('.gallery');
     openImage.forEach((image) => {
-      image.addEventListener("click", (event) => {
-      const articleId = event.target.parentNode.id;
-      lightbox.open(parseInt(articleId));
-    })
-    })
+      image.addEventListener('click', (event) => {
+        const articleId = event.target.parentNode.id;
+        this.lightbox.open(parseInt(articleId, 10));
+      });
+    });
+  }
+
+  totalLikesAndPriceDOM() {
+    const container = document.querySelector('.total_like_price');
+    container.innerHTML = '';
+    const likes = document.createElement('span');
+    const prices = document.createElement('span');
+    const heart = document.createElement('img');
+
+    likes.className = 'like';
+    likes.textContent = this.totalLikes;
+    heart.className = 'heart_like';
+    likes.appendChild(heart);
+    heart.setAttribute('src', this.heartIcon);
+    prices.className = 'price';
+    prices.textContent = `${this.price} €/jour`;
+
+    container.appendChild(likes);
+    container.appendChild(prices);
+    return container;
   }
 }

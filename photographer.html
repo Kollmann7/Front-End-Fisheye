@@ -17,27 +17,29 @@
     </header>
     <main id="main">
       <div class="photograph_header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi </button>
+        <button class="contact_button">Contactez-moi </button>
       </div>
       <div id="dropdown" class="select_dropdown" role="listbox">
         <div class="select_medias">
           <label for="select_images" id="sort" tabindex="0">trier par</label>
           <select id="select_images" data-trigger="select" tabindex="0">
-            <option value="popularity">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
+            <option class ="select_option" value="popularity">Popularité</option>
+            <option class ="select_option" value="date">Date</option>
+            <option class ="select_option" value="title">Titre</option>
           </select>
           <i class="fas fa-chevron-down"></i>
         </div>
       </div>
       <section class="photographers_media">
       </section>
+    <div class="total_like_price">
+    </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2 class="modal_title">Contactez-moi</h2>
-          <img src="assets/icons/closeW.svg" onclick="closeModal()" />
+          <img src="assets/icons/closeW.svg" class="close_button" />
         </header>
 				<form>
 					<div>
@@ -66,6 +68,5 @@
     <script src="/scripts/pages/photographer.js"></script>
     <script src="scripts/factories/photographerProfils.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/factories/totallike.js"></script>
   </body>
 </html>
