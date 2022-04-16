@@ -1,4 +1,4 @@
-import ProfilFactory from '../factories/photographerProfils.js';
+import ProfilFactory from '../factories/photographerProfils';
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
