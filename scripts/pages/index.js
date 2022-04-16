@@ -1,4 +1,4 @@
-import PhotographerFactory from '../factories/photographer';
+import PhotographerFactory from '../factories/photographer.js';
 
 async function getPhotographers() {
   const response = await fetch('../../data/photographers.json');

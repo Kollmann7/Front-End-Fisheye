@@ -1,6 +1,6 @@
-import MediaFactory from './media';
-import ContactForm from '../utils/contactForm';
-import Lightbox from '../utils/lightbox';
+import MediaFactory from './media.js';
+import ContactForm from '../utils/contactForm.js';
+import Lightbox from '../utils/lightbox.js';
 
 export default class ProfilFactory {
   constructor(profil) {
