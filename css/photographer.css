@@ -245,7 +245,7 @@ textarea {
     height: 35px;
     border:none;
     fill: #901c1c;
-    background: url(/assets/icons/closeR.svg) center center ;
+    background: url(/assets/icons/closeR.svg) center center;
     text-indent:-6000px;
     z-index: 12;
     cursor: pointer;
@@ -291,6 +291,7 @@ textarea {
     height:40px;
 	display: flex;
 	justify-content: space-between;
+    align-items: center;
 	padding: 6px;
 	position: fixed;
 	bottom: 0;
@@ -298,12 +299,17 @@ textarea {
 	border-radius: 8px 8px 0 0;
 }
 .heart_like{
-    height: 30px;
-    width:30px;
+    height: 25px;
+    width:25px;
+    position: absolute;
+    left: 45px;
 }
 .price,
 .like{
     font-size: 20px;
+}
+.likes_container{
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
 }
