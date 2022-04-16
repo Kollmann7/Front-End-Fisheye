@@ -24,6 +24,7 @@ export default class PhotographerFactory {
 
     img.setAttribute('src', this.picture);
     img.setAttribute('alt', `Photo portrait de ${this.name}`);
+    img.setAttribute('tabindex', 0);
     h2.textContent = this.name;
     h2.setAttribute('tabindex', 0);
 

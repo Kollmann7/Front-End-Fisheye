@@ -41,6 +41,7 @@ export default class ProfilFactory {
     const intro = document.createElement('div');
     const contactBtn = document.querySelector('.contact_button');
     h2.textContent = this.name;
+    h2.setAttribute('tabindex', 0);
     img.setAttribute('src', this.picture);
 
     location.className = 'location';

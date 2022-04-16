@@ -35,12 +35,16 @@ export default class MediaFactory {
 
     titles.className = 'title';
     titles.textContent = this.title;
+    titles.setAttribute('tabindex', 0);
 
     like.className = 'likes';
     like.textContent = this.likes;
+    like.setAttribute('tabindex', 0);
 
     heart.className = 'heart_icon';
     heart.setAttribute('src', this.heartIcon);
+    heart.setAttribute('tabindex', 0);
+    heart.setAttribute('aria-label', 'Like la photo');
 
     likeContainer.className = 'like_container';
     likeContainer.appendChild(like);
