@@ -47,7 +47,6 @@
 
 /*dropdown menu*/
 .select_dropdown {
-    display: inline-flex;
     position: relative;
     cursor: pointer;
     margin-top: 10px;
@@ -61,31 +60,21 @@
     margin: 0;
     padding: 0;
     margin-right: 20px;
-    font-weight: 700;
+    font-size: 28px;
 }
-.select_dropdown select {
+.selected{
     width: 170px;
     height: 70px;
     font-weight: bold;
     color: white;
-    padding: 11px 15px;
+    padding: 10px 15px;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
     
 }
-.select_option {
-    height: 50px;
-}
-.select_dropdown i {
-    position: absolute;
-    top: 25px;
-    right: 15px;
-    color: white;
-    font-size: 1.125em;
-    pointer-events: none;
-}
+
 /*Media gallery*/
 .photographers_media{
     display: grid;
@@ -256,7 +245,7 @@ textarea {
     height: 35px;
     border:none;
     fill: #901c1c;
-    background: url(/assets/icons/closeR.svg)center center ;
+    background: url(/assets/icons/closeR.svg) center center ;
     text-indent:-6000px;
     z-index: 12;
     cursor: pointer;

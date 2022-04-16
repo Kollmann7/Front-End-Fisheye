@@ -25,12 +25,17 @@ export default class PhotographerFactory {
     img.setAttribute('src', this.picture);
     img.setAttribute('alt', `Photo portrait de ${this.name}`);
     h2.textContent = this.name;
+    h2.setAttribute('tabindex', 0);
 
     location.className = 'location';
     location.textContent = `${this.city}, ${this.country}`;
+    location.setAttribute('aria-label', 'Lieu de résidence du photographe');
+    location.setAttribute('tabindex', 0);
 
     taglines.className = 'taglines';
     taglines.textContent = this.tagline;
+    taglines.setAttribute('aria-label', 'Slogan du photographe');
+    taglines.setAttribute('tabindex', 0);
 
     prices.className = 'prices';
     prices.textContent = `${this.price} €/jour`;

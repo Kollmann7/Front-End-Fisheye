@@ -11,8 +11,8 @@
   </head>
   <body>
     <header>
-      <a href="./index.html" aria-label="Lien vers l'accueil de Fisheye" tabindex="1">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+      <a href="./index.html" tabindex="1">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-label="Lien vers l'accueil de Fisheye"/>
       </a>
     </header>
     <main id="main">
@@ -38,7 +38,7 @@
 			<div class="modal">
 				<header>
           <h2 class="modal_title">Contactez-moi</h2>
-          <img src="assets/icons/closeW.svg" class="close_button" />
+          <img src="assets/icons/closeW.svg" class="close_button" aria-label="Fermer le formulaire de contact"/>
         </header>
 				<form>
 					<div>
@@ -55,7 +55,7 @@
           </div>
           <div>
             <label id="message" for="messageInput">Votre message</label>
-            <textarea id="messageInput" name="message" text="Message" required rows="10" aria-label="message"></textarea>
+            <textarea id="messageInput" name="message" text="Message" required rows="10" aria-label="Votre message"></textarea>
           </div>
           <button id="btn_contact_submit" type="submit" class="contact_button" aria-labelledby="Envoyer le forumulaire">Envoyer</button>
 				</form>
