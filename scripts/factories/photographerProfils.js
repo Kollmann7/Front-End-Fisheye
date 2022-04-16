@@ -1,7 +1,8 @@
-/* global ContactForm, Lightbox, MediaFactory */
+import MediaFactory from './media.js';
+import ContactForm from '../utils/contactForm.js';
+import Lightbox from '../utils/lightbox.js';
 
-// eslint-disable-next-line no-unused-vars
-class ProfilFactory {
+export default class ProfilFactory {
   constructor(profil) {
     this.name = profil.name;
     this.portrait = profil.portrait;
@@ -11,6 +12,7 @@ class ProfilFactory {
     this.price = profil.price;
     this.picture = `assets/photographers/${this.portrait}`;
     this.heartIcon = 'assets/icons/heart.svg';
+    this.likeIcon = 'assets/icons/heartB.svg';
     this.medias = profil.medias.map((media) => new MediaFactory(media));
     this.lightbox = new Lightbox(this.medias);
     this.contactForm = new ContactForm(this.name);
@@ -141,6 +143,7 @@ class ProfilFactory {
   totalLikesAndPriceDOM() {
     const container = document.querySelector('.total_like_price');
     container.innerHTML = '';
+    const likesContainer = document.createElement('div');
     const likes = document.createElement('span');
     const prices = document.createElement('span');
     const heart = document.createElement('img');
@@ -148,12 +151,14 @@ class ProfilFactory {
     likes.className = 'like';
     likes.textContent = this.totalLikes;
     heart.className = 'heart_like';
-    likes.appendChild(heart);
-    heart.setAttribute('src', this.heartIcon);
+    likesContainer.appendChild(heart);
+    heart.setAttribute('src', this.likeIcon);
     prices.className = 'price';
     prices.textContent = `${this.price} €/jour`;
+    likesContainer.className = 'likes_container';
+    likesContainer.appendChild(likes);
 
-    container.appendChild(likes);
+    container.appendChild(likesContainer);
     container.appendChild(prices);
     return container;
   }

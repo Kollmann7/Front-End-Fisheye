@@ -11,7 +11,7 @@
   </head>
   <body>
     <header>
-      <a href="./index.html" tabindex="1">
+      <a href="./index.html" aria-label="Lien vers l'accueil de Fisheye" tabindex="1">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
@@ -21,13 +21,12 @@
       </div>
       <div id="dropdown" class="select_dropdown" role="listbox">
         <div class="select_medias">
-          <label for="select_images" id="sort" tabindex="0">trier par</label>
-          <select id="select_images" data-trigger="select" tabindex="0">
+          <label aria-label="Choix du tri des photos" for="select_images" id="sort" tabindex="0">trier par</label>
+          <select id="select_images" class="selected" data-trigger="select" tabindex="0">
             <option class ="select_option" value="popularity">Popularité</option>
             <option class ="select_option" value="date">Date</option>
             <option class ="select_option" value="title">Titre</option>
           </select>
-          <i class="fas fa-chevron-down"></i>
         </div>
       </div>
       <section class="photographers_media">
@@ -44,29 +43,25 @@
 				<form>
 					<div>
 						<label id="firstname" for="firstNameInput">Prénom</label>
-						<input id="firstNameInput" name="firstname" type="text" required/>
+						<input id="firstNameInput" name="firstname" type="text" aria-label="Prénom" required/>
 					</div>
           <div>
             <label id="name" for="nameInput">Nom</label>
-            <input id="lastNameInput" name="lastname" type="text" required/>
+            <input id="lastNameInput" name="lastname" type="text" aria-label="Nom" required/>
           </div>
           <div>
             <label id="email" for="emailInput">Email</label>
-            <input id="emailInput" name="email" type="email" required/>
+            <input id="emailInput" name="email" type="email" aria-label="email" required/>
           </div>
           <div>
             <label id="message" for="messageInput">Votre message</label>
-            <textarea id="messageInput" name="message" text="Message" required rows="10" ></textarea>
+            <textarea id="messageInput" name="message" text="Message" required rows="10" aria-label="message"></textarea>
           </div>
-          <button id="btn_contact_submit" type="submit" class="contact_button">Envoyer</button>
+          <button id="btn_contact_submit" type="submit" class="contact_button" aria-labelledby="Envoyer le forumulaire">Envoyer</button>
 				</form>
 			</div>
 		</div>
     
-    <script src="scripts/utils/lightbox.js"></script>
-    <script src="scripts/factories/media.js" ></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="scripts/factories/photographerProfils.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

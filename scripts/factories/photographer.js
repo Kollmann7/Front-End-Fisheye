@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-class PhotographerFactory {
+export default class PhotographerFactory {
   constructor(data) {
     this.name = data.name;
     this.portrait = data.portrait;

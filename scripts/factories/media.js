@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-class MediaFactory {
+export default class MediaFactory {
   constructor(media) {
     this.image = media.image;
     this.video = media.video;

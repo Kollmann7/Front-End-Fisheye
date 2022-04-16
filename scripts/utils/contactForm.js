@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-class ContactForm {
+export default class ContactForm {
   constructor(name) {
     this.submitButton = document.querySelector('#btn_contact_submit');
     this.contact_button = document.querySelector('.contact_button');
@@ -7,6 +6,7 @@ class ContactForm {
     this.name = name;
     this.manageEvent();
     this.displayPhotographerName();
+    this.contactModal = document.getElementById('contact_modal');
   }
 
   manageEvent() {
@@ -16,16 +16,13 @@ class ContactForm {
   }
 
   displayModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'block';
+    this.contactModal.style.display = 'block';
     document.querySelector('main').style.display = 'none';
     this.displayPhotographerName();
   }
 
   closeModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'none';
-
+    this.contactModal.style.display = 'none';
     document.querySelector('main').style.display = 'block';
   }
 
@@ -41,8 +38,12 @@ class ContactForm {
     const email = document.querySelector('#emailInput');
     const message = document.querySelector('#messageInput');
 
-    if (firstName.checkValidity()
-      && lastName.checkValidity() && email.checkValidity() && message.checkValidity()) {
+    if (
+      firstName.checkValidity()
+      && lastName.checkValidity()
+      && email.checkValidity()
+      && message.checkValidity()
+    ) {
       this.closeModal();
     }
   }

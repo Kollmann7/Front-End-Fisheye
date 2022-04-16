@@ -1,11 +1,9 @@
+import PhotographerFactory from '../factories/photographer.js';
+
 async function getPhotographers() {
-  try {
-    const response = await fetch('../../data/photographers.json');
-    const result = await response.json();
-    return result.photographers;
-  } catch (error) {
-    console.error('mon fetch a pété', error);
-  }
+  const response = await fetch('../../data/photographers.json');
+  const result = await response.json();
+  return result.photographers;
 }
 
 function displayData(photographers) {
