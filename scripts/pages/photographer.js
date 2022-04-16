@@ -1,7 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
-const profilSection = document.querySelector(".photograph_header");
-const mediaSection = document.querySelector(".photographers_media");
 let likesArray = [];
 let dateArray = [];
 let titleArray = [];
@@ -58,7 +56,6 @@ function displayProfilMedia( profils, medias ) {
 
 function openLightbox(lightbox){
   const openImage = document.querySelectorAll(".gallery");
-  console.log(openImage);
   openImage.forEach((image) => {
     image.addEventListener("click", (event) => {
     const articleId = event.target.parentNode.id;
@@ -68,6 +65,8 @@ function openLightbox(lightbox){
 }
 
 function displayMedias(mediasFromPhotographer){
+  const mediaSection = document.querySelector(".photographers_media");
+
   // mediaSection.innerHTML ="";
   while (mediaSection.firstChild){
     mediaSection.removeChild(mediaSection.firstChild);
@@ -81,17 +80,29 @@ function displayMedias(mediasFromPhotographer){
 }
 
 function displayProfil (profil) {
+  const profilSection = document.querySelector(".photograph_header");
   const profilModel = profilFactory(profil);
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
+  
+  // const likeSection = document.querySelector(".total_like_price");
+  // const totalLikeDOM = profilModel.totalLikesAndPriceDOM();
+  // console.log(totalLikeDOM)
+  // likeSection.appendChild(totalLikeDOM);
+}
+function displayTotalLikes(){
+  const likeSection = document.querySelector(".total_like_price");
+  const totalLikeDOM = totalLikesAndPriceDOM();
+  console.log(totalLikeDOM)
+  likeSection.appendChild(totalLikeDOM);
+
 }
 
 function displaySortMedias() {
-  const SortButtonSection = document.querySelector(".select_dropdown");
+  const sortButtonSection = document.querySelector(".select_dropdown");
   const buttonSort = sortMediasDOM();
-  SortButtonSection.appendChild(buttonSort);
+  sortButtonSection.appendChild(buttonSort);
 }
-
 
 function likeMedia(medias){
   const addLike = document.querySelectorAll(".heart_icon");
@@ -102,6 +113,8 @@ function likeMedia(medias){
       const oldLike = medias.filter(media => media.id === parseInt(mediaId))[0].likes;
       if (likescounter.textContent == oldLike) {
         likescounter.textContent = parseInt(likescounter.textContent) +1;
+      }else if(likescounter.textContent == oldLike +1){
+        likescounter.textContent = parseInt(likescounter.textContent) -1;
       }
       changeTotalLike();
     }) 
@@ -115,6 +128,7 @@ function changeTotalLike(){
   addLike.forEach((like) => {
     const likescounter = like.previousSibling;
     totalLikes = totalLikes + parseInt(likescounter.textContent);
+    console.log(totalLikes)
   })
 }
 
