@@ -21,10 +21,12 @@ export default class PhotographerFactory {
     const location = document.createElement('div');
     const taglines = document.createElement('div');
     const prices = document.createElement('div');
+    const link = document.createElement('a');
 
     img.setAttribute('src', this.picture);
     img.setAttribute('alt', `Photo portrait de ${this.name}`);
     img.setAttribute('tabindex', 0);
+    link.setAttribute('href', `photographer.html?id=${this.id}`);
     h2.textContent = this.name;
     h2.setAttribute('tabindex', 0);
 
@@ -41,7 +43,8 @@ export default class PhotographerFactory {
     prices.className = 'prices';
     prices.textContent = `${this.price} €/jour`;
 
-    article.appendChild(img);
+    link.appendChild(img);
+    article.appendChild(link);
     article.appendChild(h2);
     article.appendChild(location);
     article.appendChild(taglines);
