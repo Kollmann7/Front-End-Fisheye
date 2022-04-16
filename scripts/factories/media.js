@@ -24,12 +24,14 @@ export default class MediaFactory {
       article.appendChild(imageElement);
       article.appendChild(ImgTitle);
       imageElement.setAttribute('class', 'gallery');
+      imageElement.setAttribute('tabindex', 0);
       imageElement.setAttribute('src', this.photo);
     } else if (this.video) {
       article.appendChild(videoElement);
       article.appendChild(ImgTitle);
       videoElement.setAttribute('class', 'gallery');
       videoElement.setAttribute('src', this.clip);
+      videoElement.setAttribute('tabindex', 0);
       videoElement.setAttribute('type', 'video/mp4');
     }
 
