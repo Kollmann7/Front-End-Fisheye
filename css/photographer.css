@@ -49,8 +49,9 @@
 .select_dropdown {
     display: inline-flex;
     position: relative;
+    cursor: pointer;
     margin-top: 10px;
-    font-size: 1.125em;
+    font-size: 24px;
     padding: 50px;
 }
 .select-dropdown .select_medias {
@@ -72,23 +73,10 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-    text-indent: 1px;
-    outline: none;
-    appearance: none;
+    
 }
-.select_dropdown select:not(:focus) {
-    color: #fff;
-    background-color: #901C1C;
-}
-.select_dropdown option {
-    line-height: 30px;
-    background-color: #901C1C;
-    position: absolute;
-    top: 0;
-    left: 60px;
-    height : 120px;
-    outline: none;
-    color: #fff;
+.select_option {
+    height: 50px;
 }
 .select_dropdown i {
     position: absolute;
@@ -308,18 +296,25 @@ textarea {
 }
 
 /*price and like footer */
-.likes_and_price {
-	background-color: #901c1c;
-	width: 40px;
+.total_like_price {
+	background-color:rgba(219, 136, 118, 1);
+	width: 250px;
+    height:40px;
 	display: flex;
 	justify-content: space-between;
 	padding: 6px;
 	position: fixed;
 	bottom: 0;
-	right: 20px;
+	right: 40px;
 	border-radius: 8px 8px 0 0;
 }
-.like-number {
-	color: black;
-    font-size:16px;
+.heart_like{
+    height: 30px;
+    width:30px;
+}
+.price,
+.like{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
 }
