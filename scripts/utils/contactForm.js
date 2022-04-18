@@ -39,8 +39,11 @@ export default class ContactForm {
   submitContactForm(e) {
     e.preventDefault();
     const firstName = document.querySelector('#firstNameInput');
+    console.log(firstName.value);
     const lastName = document.querySelector('#lastNameInput');
+    console.log(lastName.value);
     const email = document.querySelector('#emailInput');
+    console.log(email.value);
     const message = document.querySelector('#messageInput');
 
     if (

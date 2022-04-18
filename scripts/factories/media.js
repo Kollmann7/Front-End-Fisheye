@@ -26,6 +26,7 @@ export default class MediaFactory {
       imageElement.setAttribute('class', 'gallery');
       imageElement.setAttribute('tabindex', 0);
       imageElement.setAttribute('src', this.photo);
+      imageElement.setAttribute('alt', this.title);
     } else if (this.video) {
       article.appendChild(videoElement);
       article.appendChild(ImgTitle);
@@ -33,6 +34,7 @@ export default class MediaFactory {
       videoElement.setAttribute('src', this.clip);
       videoElement.setAttribute('tabindex', 0);
       videoElement.setAttribute('type', 'video/mp4');
+      videoElement.setAttribute('alt', this.title);
     }
 
     titles.className = 'title';
