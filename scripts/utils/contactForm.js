@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export default class ContactForm {
   constructor(name) {
     this.submitButton = document.querySelector('#btn_contact_submit');
