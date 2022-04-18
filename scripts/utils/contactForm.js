@@ -13,6 +13,11 @@ export default class ContactForm {
     this.contact_button.addEventListener('click', (event) => this.displayModal(event));
     this.close_button.addEventListener('click', (event) => this.closeModal(event));
     this.submitButton.addEventListener('click', (event) => this.submitContactForm(event));
+    this.close_button.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        this.closeModal(event);
+      }
+    });
   }
 
   displayModal() {

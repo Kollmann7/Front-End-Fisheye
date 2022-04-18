@@ -118,6 +118,18 @@ export default class ProfilFactory {
         }
         this.changeTotalLike();
       });
+      like.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+          const mediaId = event.target.parentNode.parentNode.parentNode.id;
+          const oldLike = medias.filter((media) => media.id === parseInt(mediaId, 10))[0].likes;
+          if (parseInt(likescounter.textContent, 10) === oldLike) {
+            likescounter.textContent = parseInt(likescounter.textContent, 10) + 1;
+          } else if (likescounter.textContent > oldLike) {
+            likescounter.textContent = parseInt(likescounter.textContent, 10) - 1;
+          }
+        }
+        this.changeTotalLike();
+      });
     });
   }
 
@@ -137,6 +149,14 @@ export default class ProfilFactory {
       image.addEventListener('click', (event) => {
         const articleId = event.target.parentNode.id;
         this.lightbox.open(parseInt(articleId, 10));
+      });
+    });
+    openImage.forEach((image) => {
+      image.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+          const articleId = event.target.parentNode.id;
+          this.lightbox.open(parseInt(articleId, 10));
+        }
       });
     });
   }
