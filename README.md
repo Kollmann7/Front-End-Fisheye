@@ -2,4 +2,4 @@
 
 ## Démarrer le projet
 
-Pour lancer le site web installer l'extension live server
+Pour lancer le site web installer l'extension live server.
