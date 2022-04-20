@@ -329,7 +329,7 @@ textarea {
 }
 
 /*Responsive*/
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     .modal {
       height:400px;
     }
